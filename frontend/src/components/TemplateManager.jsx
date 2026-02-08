@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function TemplateManager({ onUseTemplate, onClose }) {
+export default function TemplateManager({ onUseTemplate, onClose, t }) {
   const [templates, setTemplates] = useState([]);
   const [showSave, setShowSave] = useState(false);
   const [templateName, setTemplateName] = useState('');
@@ -33,7 +33,7 @@ export default function TemplateManager({ onUseTemplate, onClose }) {
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
         <div className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-2xl font-bold">Task Templates</h2>
+            <h2 className="text-2xl font-bold">{t('taskTemplates')}</h2>
             <button onClick={onClose} className="text-gray-500 hover:text-gray-700 text-2xl">
               ×
             </button>
@@ -41,8 +41,8 @@ export default function TemplateManager({ onUseTemplate, onClose }) {
 
           {templates.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
-              <p>No templates saved yet.</p>
-              <p className="text-sm mt-2">Create a task and save it as a template!</p>
+              <p>{t('noTemplates')}</p>
+              <p className="text-sm mt-2">{t('createTaskSave')}</p>
             </div>
           ) : (
             <div className="space-y-3">
@@ -67,13 +67,13 @@ export default function TemplateManager({ onUseTemplate, onClose }) {
                         onClick={() => onUseTemplate(template)}
                         className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
                       >
-                        Use
+                        {t('use')}
                       </button>
                       <button
                         onClick={() => deleteTemplate(template.id)}
                         className="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600"
                       >
-                        Delete
+                        {t('delete')}
                       </button>
                     </div>
                   </div>
@@ -87,7 +87,7 @@ export default function TemplateManager({ onUseTemplate, onClose }) {
   );
 }
 
-export function SaveTemplateButton({ currentTask, onSaved }) {
+export function SaveTemplateButton({ currentTask, onSaved, t }) {
   const [showInput, setShowInput] = useState(false);
   const [name, setName] = useState('');
 
@@ -121,7 +121,7 @@ export function SaveTemplateButton({ currentTask, onSaved }) {
         onClick={() => setShowInput(true)}
         className="text-sm text-blue-600 hover:underline"
       >
-        💾 Save as Template
+        💾 {t('saveAsTemplate')}
       </button>
     );
   }
@@ -132,7 +132,7 @@ export function SaveTemplateButton({ currentTask, onSaved }) {
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Template name..."
+        placeholder={t('templateName')}
         className="px-3 py-1 border rounded text-sm flex-1"
         autoFocus
       />
@@ -141,14 +141,14 @@ export function SaveTemplateButton({ currentTask, onSaved }) {
         onClick={handleSave}
         className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
       >
-        Save
+        {t('save')}
       </button>
       <button
         type="button"
         onClick={() => setShowInput(false)}
         className="px-3 py-1 border rounded text-sm hover:bg-gray-100"
       >
-        Cancel
+        {t('cancel')}
       </button>
     </div>
   );

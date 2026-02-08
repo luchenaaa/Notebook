@@ -1,4 +1,4 @@
-export default function Navbar({ view, setView, filter, setFilter, searchQuery, setSearchQuery, onNew, onTemplates }) {
+export default function Navbar({ view, setView, filter, setFilter, searchQuery, setSearchQuery, onNew, onTemplates, language, onToggleLanguage, t }) {
   return (
     <nav className="bg-white shadow-md sticky top-0 z-40 border-b border-gray-200">
       <div className="container mx-auto px-6 py-4 max-w-7xl">
@@ -10,7 +10,7 @@ export default function Navbar({ view, setView, filter, setFilter, searchQuery, 
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h1 className="text-2xl font-bold text-gray-800">Notebook</h1>
+            <h1 className="text-2xl font-bold text-gray-800">{t('appName')}</h1>
           </div>
           
           <div className="flex items-center gap-3 flex-wrap">
@@ -20,7 +20,7 @@ export default function Navbar({ view, setView, filter, setFilter, searchQuery, 
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search tasks..."
+                placeholder={t('searchPlaceholder')}
                 className="pl-10 pr-10 py-2.5 border-2 border-gray-200 rounded-xl w-64 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent shadow-sm transition-all"
               />
               <svg
@@ -58,7 +58,7 @@ export default function Navbar({ view, setView, filter, setFilter, searchQuery, 
                     : 'text-gray-600 hover:bg-gray-200'
                 }`}
               >
-                📝 Notebook
+                📝 {t('notebook')}
               </button>
               <button
                 onClick={() => setView('calendar')}
@@ -68,7 +68,7 @@ export default function Navbar({ view, setView, filter, setFilter, searchQuery, 
                     : 'text-gray-600 hover:bg-gray-200'
                 }`}
               >
-                📅 Calendar
+                📅 {t('calendar')}
               </button>
             </div>
 
@@ -78,9 +78,9 @@ export default function Navbar({ view, setView, filter, setFilter, searchQuery, 
               onChange={(e) => setFilter(e.target.value)}
               className="px-4 py-2.5 border-2 border-gray-200 rounded-xl bg-white font-medium focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent shadow-sm cursor-pointer"
             >
-              <option value="all">All Tasks</option>
-              <option value="active">Active</option>
-              <option value="done">Completed</option>
+              <option value="all">{t('allTasks')}</option>
+              <option value="active">{t('active')}</option>
+              <option value="done">{t('completed')}</option>
             </select>
 
             {/* Templates Button */}
@@ -88,7 +88,15 @@ export default function Navbar({ view, setView, filter, setFilter, searchQuery, 
               onClick={onTemplates}
               className="px-4 py-2.5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl hover:from-blue-600 hover:to-cyan-600 font-medium shadow-lg transition-all transform hover:scale-105"
             >
-              📋 Templates
+              📋 {t('templates')}
+            </button>
+
+            {/* Language Toggle Button */}
+            <button
+              onClick={onToggleLanguage}
+              className="px-4 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 font-medium shadow-lg transition-all transform hover:scale-105"
+            >
+              {language === 'en' ? '🌐 Eng' : '🌐 中文'}
             </button>
 
             {/* New Task Button */}
@@ -99,7 +107,7 @@ export default function Navbar({ view, setView, filter, setFilter, searchQuery, 
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
-              New Task
+              {t('newTask')}
             </button>
           </div>
         </div>

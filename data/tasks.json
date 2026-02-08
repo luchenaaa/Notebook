@@ -2,7 +2,7 @@
   {
     "id": "e41d8cd6-28cd-446d-bb85-26f8a50e4d73",
     "title": "Email Sam",
-    "content": "Email Sam",
+    "content": "Write an email to Sam, talk about how long can we get the AGI as they promised. ",
     "textColor": "#0b05ff",
     "fontWeight": "bold",
     "images": [
@@ -11,16 +11,16 @@
     "tags": [
       "Work"
     ],
-    "dueAt": "2026-02-05T21:30:00.000Z",
+    "dueAt": "2026-02-04T21:30:00.000Z",
     "createdAt": "2026-02-07T13:30:22.225Z",
-    "updatedAt": "2026-02-07T14:09:51.973Z",
+    "updatedAt": "2026-02-08T07:45:40.360Z",
     "done": false,
     "priority": "high"
   },
   {
     "id": "c0f89184-bc9d-46a2-8382-4da7af8b7239",
     "title": "Avatar Movie Night",
-    "content": "Avatar Movie Night",
+    "content": "Spend the Movie Night with your partner.",
     "textColor": "#9e05ff",
     "fontWeight": "bold",
     "images": [
@@ -29,16 +29,16 @@
     "tags": [
       "Work"
     ],
-    "dueAt": "2026-02-20T21:49:00.000Z",
+    "dueAt": "2026-02-20T13:49:00.000Z",
     "createdAt": "2026-02-07T13:49:29.371Z",
-    "updatedAt": "2026-02-07T14:10:42.950Z",
+    "updatedAt": "2026-02-08T06:18:43.180Z",
     "done": false,
     "priority": "medium"
   },
   {
     "id": "9a933302-9fc3-4d17-8f87-a11c7b5b808f",
     "title": "Laser Eyes Dog",
-    "content": "Laser Eyes Dog",
+    "content": "Put this laser eyes image as profile pic. and",
     "textColor": "#ff5705",
     "fontWeight": "bold",
     "images": [
@@ -47,16 +47,16 @@
     "tags": [
       "Work"
     ],
-    "dueAt": "2026-02-24T14:08:00.000Z",
+    "dueAt": "2026-02-23T22:08:00.000Z",
     "priority": "high",
     "createdAt": "2026-02-07T14:08:30.121Z",
-    "updatedAt": "2026-02-07T14:10:16.227Z",
+    "updatedAt": "2026-02-08T07:43:20.037Z",
     "done": false
   },
   {
     "id": "e62bcd99-fddb-4ee4-bf7d-836f96774e0c",
     "title": "Call Elon",
-    "content": "Call Elon",
+    "content": "Call Elon and ask him about when do we go to Mars.",
     "textColor": "#0b05ff",
     "fontWeight": "bold",
     "images": [
@@ -65,10 +65,10 @@
     "tags": [
       "personal"
     ],
-    "dueAt": "2026-02-08T14:11:00.000Z",
+    "dueAt": "2026-02-08T06:11:00.000Z",
     "priority": "low",
     "createdAt": "2026-02-07T14:11:50.398Z",
-    "updatedAt": "2026-02-07T14:11:50.398Z",
+    "updatedAt": "2026-02-08T06:19:09.253Z",
     "done": false
   }
 ]

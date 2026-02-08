@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, startOfWeek, endOfWeek } from 'date-fns';
+import { zhCN } from 'date-fns/locale';
 
-export default function CalendarView({ tasks, onEdit }) {
+export default function CalendarView({ tasks, onEdit, t, language }) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -25,6 +26,22 @@ export default function CalendarView({ tasks, onEdit }) {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1));
   }
 
+  // Format month/year based on language
+  function formatMonthYear(date) {
+    if (language === 'zh') {
+      return format(date, 'yyyy年M月', { locale: zhCN });
+    }
+    return format(date, 'MMMM yyyy');
+  }
+
+  // Format selected date based on language
+  function formatSelectedDate(date) {
+    if (language === 'zh') {
+      return format(date, 'M月d日, yyyy年', { locale: zhCN });
+    }
+    return format(date, 'MMM d, yyyy');
+  }
+
   const selectedDayTasks = selectedDate ? getTasksForDay(selectedDate) : [];
 
   const priorityConfig = {
@@ -45,18 +62,18 @@ export default function CalendarView({ tasks, onEdit }) {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            Prev
+            {t('previous')}
           </button>
           
           <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-            {format(currentDate, 'MMMM yyyy')}
+            {formatMonthYear(currentDate)}
           </h2>
           
           <button 
             onClick={nextMonth} 
             className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl hover:from-blue-600 hover:to-cyan-600 font-medium shadow-md transition-all transform hover:scale-105 flex items-center gap-2"
           >
-            Next
+            {t('next')}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
@@ -69,10 +86,10 @@ export default function CalendarView({ tasks, onEdit }) {
         <div className="flex-1 bg-white rounded-2xl shadow-lg p-4">
           {/* Day Headers */}
           <div className="grid grid-cols-7 gap-2 mb-3">
-            {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map(day => (
+            {[t('sunday'), t('monday'), t('tuesday'), t('wednesday'), t('thursday'), t('friday'), t('saturday')].map((day, idx) => (
               <div key={day} className="text-center font-bold text-gray-700 py-2 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg text-sm">
                 <div className="hidden lg:block">{day}</div>
-                <div className="lg:hidden">{day.slice(0, 3)}</div>
+                <div className="lg:hidden">{[t('sun'), t('mon'), t('tue'), t('wed'), t('thu'), t('fri'), t('sat')][idx]}</div>
               </div>
             ))}
           </div>
@@ -145,7 +162,7 @@ export default function CalendarView({ tasks, onEdit }) {
           <div className="w-96 bg-white rounded-2xl shadow-xl p-4 animate-fade-in max-h-[calc(100vh-200px)] overflow-y-auto">
             <div className="flex items-center justify-between mb-4 sticky top-0 bg-white pb-2 border-b">
               <h3 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                📅 {format(selectedDate, 'MMM d, yyyy')}
+                📅 {t('tasksFor')} {formatSelectedDate(selectedDate)}
               </h3>
               <button
                 onClick={() => setSelectedDate(null)}
