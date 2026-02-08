@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
+import { zhCN } from 'date-fns/locale';
 
-export default function TaskCard({ task, onToggleDone, onEdit, onDelete, t }) {
+export default function TaskCard({ task, onToggleDone, onEdit, onDelete, t, language }) {
   const doneStyle = task.done ? 'opacity-70' : '';
   
   const priorityConfig = {
@@ -28,6 +29,14 @@ export default function TaskCard({ task, onToggleDone, onEdit, onDelete, t }) {
   };
   
   const priority = priorityConfig[task.priority] || priorityConfig.medium;
+
+  // Format due date based on language
+  function formatDueDate(date) {
+    if (language === 'zh') {
+      return format(new Date(date), 'yyyy年M月d日 ah:mm', { locale: zhCN });
+    }
+    return format(new Date(date), 'MMM d, yyyy h:mm a');
+  }
 
   return (
     <div className={`bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden ${doneStyle} animate-fade-in`}>
@@ -118,7 +127,7 @@ export default function TaskCard({ task, onToggleDone, onEdit, onDelete, t }) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             <span className="text-sm text-gray-700 font-semibold">
-              {t('due')}: {format(new Date(task.dueAt), 'MMM d, yyyy h:mm a')}
+              {t('due')}: {formatDueDate(task.dueAt)}
             </span>
           </div>
         )}

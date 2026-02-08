@@ -30,20 +30,20 @@
 
 如果您更喜欢手动运行服务器：
 
-#### 后端
+#### 后端 (打开 powershell)
 
 ```bash
-cd backend
+cd C:\Users\Administrator\Desktop\Notebook\backend
 npm install
 npm start
 ```
 
 服务器运行在 http://localhost:3001
 
-#### 前端
+#### 前端 (打开 powershell)
 
 ```bash
-cd frontend
+cd C:\Users\Administrator\Desktop\Notebook\frontend
 npm install
 npm run dev
 ```

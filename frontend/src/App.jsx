@@ -196,6 +196,7 @@ export default function App() {
                   onEdit={handleEdit}
                   onDelete={handleDelete}
                   t={t}
+                  language={language}
                 />
               ))}
             </div>
